@@ -6,21 +6,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center_horizontal"
     android:padding="24dp"
     android:background="#E0F7FA"
-    tools:context=".ActivityMaterias">>
+    tools:context=".ActivityMaterias">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="Registrar Materia"
-        android:textColor="#006064"
-        android:textSize="32sp"
-        android:textStyle="bold" />
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="32dp">
 
-    <!-- Campo para el Código -->
+        <ImageButton
+            android:id="@+id/buttonRegresar"
+            style="?attr/materialIconButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="Regresar"
+            app:srcCompat="?attr/homeAsUpIndicator"
+            app:tint="#006064" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Registrar Materia"
+            android:textColor="#006064"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,7 +50,6 @@
             android:inputType="textCapCharacters" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Campo para el Nombre -->
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -50,7 +64,6 @@
             android:inputType="textCapWords" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Campo para los Créditos -->
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -66,7 +79,6 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <!-- Fila de Botones 1: Guardar y Consultar -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -97,7 +109,6 @@
             android:textSize="16sp" />
     </LinearLayout>
 
-    <!-- Fila de Botones 2: Actualizar y Eliminar -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

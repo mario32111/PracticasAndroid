@@ -6,20 +6,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center_horizontal"
     android:padding="24dp"
     android:background="#E0F7FA"
-    tools:context=".CalificacionesActivity">>
+    tools:context=".CalificacionesActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <!-- =========== CABECERA (Botón + Título) =========== -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="Registrar Calificación"
-        android:textColor="#006064"
-        android:textSize="32sp"
-        android:textStyle="bold" />
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="32dp">
 
+        <!-- Botón de Regresar -->
+        <ImageButton
+            android:id="@+id/buttonRegresar"
+            style="?attr/materialIconButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="Regresar"
+            app:srcCompat="?attr/homeAsUpIndicator"
+            app:tint="#006064" />
+
+        <!-- Título -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Calificaciones"
+            android:textColor="#006064"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+    <!-- ================================================== -->
+
+
+    <!-- Selector de Alumno (Dropdown) -->
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,6 +57,7 @@
             android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Selector de Materia (Dropdown) -->
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,6 +72,7 @@
             android:inputType="none" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Fila para Unidades 1 y 2 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -85,6 +110,7 @@
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
+    <!-- Fila para Unidades 3 y 4 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -122,6 +148,7 @@
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
+    <!-- Fila de Botones 1: Guardar y Consultar -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -152,6 +179,7 @@
             android:textSize="16sp" />
     </LinearLayout>
 
+    <!-- Fila de Botones 2: Actualizar y Eliminar -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
