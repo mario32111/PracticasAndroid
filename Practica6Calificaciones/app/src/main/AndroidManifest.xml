@@ -12,6 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Practica6Calificaciones">
         <activity
+            android:name=".CalificacionesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityMaterias"
+            android:exported="false" />
+        <activity
+            android:name=".AlumnosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
