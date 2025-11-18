@@ -91,85 +91,9 @@ class MainActivity : AppCompatActivity() {
             ) {
                 //Toast.makeText(this@MainActivity, adaptador1.getItem(position)!!.valor, Toast.LENGTH_SHORT)
                 //url="http://192.168.15.47/android/ejemploJSON.php"
-                url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=dfa30107b91b4b35a578cda6e89b37f4"
+                url = "https://newsapi.org/v2/top-headlines?country=us&category=${adaptador1.getItem(position)!!.valor}&apiKey=dfa30107b91b4b35a578cda6e89b37f4"
+                peticion(url)
 
-                requestQueue= Volley.newRequestQueue(this@MainActivity)
-
-                stringRequestOK = object : StringRequest(Request.Method.GET, url,
-                    Response.Listener {
-                        objetoJSON = JSONObject(it)
-
-                        //txt1.text = objetoJSON.getJSONArray("articles").toString()
-
-
-                        val tipo = object : TypeToken<List<Articles>>() {}.type
-                        listaArticulos = Gson().fromJson(objetoJSON.getJSONArray("articles").toString(), tipo)
-                        Picasso.get().load(listaArticulos.get(0).urlToImage).into(img1)
-/*                        txt1.text = ""
-                        for (i in 0 until listaArticulos.size){
-                            txt1.append("${listaArticulos.get(i).author}, ${listaArticulos.get(i).title} \\n")
-                        }*/
-
-                    },
-                    Response.ErrorListener {
-
-                    }){
-                    override fun getParams(): Map<String?, String?>? {
-                        return super.getParams()
-                    }
-
-                    override fun getHeaders(): MutableMap<String, String> {
-                        val headers: HashMap<String, String> = HashMap()
-                        headers["User-Agent"] = "Mozilla/5.0"
-                        return headers
-                    }
-
-
-                }
-
-                stringRequest= object : StringRequest(Method.GET, url,
-                    Response.Listener{
-                        //objetoJSON = JSONObject(it)
-                        //articulosJSON = objetoJSON.getJSONArray("articles")
-
-
-
-                        //listaArticulos = mutableListOf<Articles>()
-
-/*                        for (i in 0 until articulosJSON.length()) {
-                            //pasarlo directamente TextView desde el objeto JSON
-
-                            //txt1.append("${articulosJSON.getJSONObject(i).getString("author")}${articulosJSON.getJSONObject(i).getString("title")} /n")
-                            val autor= articulosJSON.getJSONObject(i).getString("author")
-                            val titulo= articulosJSON.getJSONObject(i).getString("title")
-
-                            listaArticulos.add(Articles(autor, titulo))
-
-                            txt1.append("${listaArticulos.get(i).author}, ${listaArticulos.get(i).title} /n")
-                        }*/
-                        //txt1.text = objetoJSON.getJSONArray("articles").toString()
-
-
-                        //pasarla diretamenta a la lista mutable sin usar un for
-/*                        val tipo = object : TypeToken<List<Articles>>() {}.type
-                        listaArticulos = Gson().fromJson(articulosJSON.toString(), tipo)*/
-
-                    },
-                    Response.ErrorListener {
-
-                    }){
-                    override fun getParams(): Map<String?, String?>? {
-                        return super.getParams()
-                    }
-
-                    override fun getHeaders(): MutableMap<String, String> {
-                        val headers: HashMap<String, String> = HashMap()
-                        headers["User-Agent"] = "Mozilla/5.0"
-                        return headers
-                    }
-                }
-
-                requestQueue.add(stringRequestOK)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -177,5 +101,85 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+    }
+
+    private fun peticion(dirUrl: String){
+        requestQueue= Volley.newRequestQueue(this@MainActivity)
+
+        stringRequestOK = object : StringRequest(Request.Method.GET, dirUrl,
+            Response.Listener {
+                objetoJSON = JSONObject(it)
+
+                //txt1.text = objetoJSON.getJSONArray("articles").toString()
+
+
+                val tipo = object : TypeToken<List<Articles>>() {}.type
+                listaArticulos = Gson().fromJson(objetoJSON.getJSONArray("articles").toString(), tipo)
+                Picasso.get().load(listaArticulos.get(0).urlToImage).into(img1)
+                /*                        txt1.text = ""
+                                        for (i in 0 until listaArticulos.size){
+                                            txt1.append("${listaArticulos.get(i).author}, ${listaArticulos.get(i).title} \\n")
+                                        }*/
+
+            },
+            Response.ErrorListener {
+
+            }){
+            override fun getParams(): Map<String?, String?>? {
+                return super.getParams()
+            }
+
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers: HashMap<String, String> = HashMap()
+                headers["User-Agent"] = "Mozilla/5.0"
+                return headers
+            }
+
+
+        }
+
+        stringRequest= object : StringRequest(Method.GET, url,
+            Response.Listener{
+                //objetoJSON = JSONObject(it)
+                //articulosJSON = objetoJSON.getJSONArray("articles")
+
+
+
+                //listaArticulos = mutableListOf<Articles>()
+
+                /*                        for (i in 0 until articulosJSON.length()) {
+                                            //pasarlo directamente TextView desde el objeto JSON
+
+                                            //txt1.append("${articulosJSON.getJSONObject(i).getString("author")}${articulosJSON.getJSONObject(i).getString("title")} /n")
+                                            val autor= articulosJSON.getJSONObject(i).getString("author")
+                                            val titulo= articulosJSON.getJSONObject(i).getString("title")
+
+                                            listaArticulos.add(Articles(autor, titulo))
+
+                                            txt1.append("${listaArticulos.get(i).author}, ${listaArticulos.get(i).title} /n")
+                                        }*/
+                //txt1.text = objetoJSON.getJSONArray("articles").toString()
+
+
+                //pasarla diretamenta a la lista mutable sin usar un for
+                /*                        val tipo = object : TypeToken<List<Articles>>() {}.type
+                                        listaArticulos = Gson().fromJson(articulosJSON.toString(), tipo)*/
+
+            },
+            Response.ErrorListener {
+
+            }){
+            override fun getParams(): Map<String?, String?>? {
+                return super.getParams()
+            }
+
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers: HashMap<String, String> = HashMap()
+                headers["User-Agent"] = "Mozilla/5.0"
+                return headers
+            }
+        }
+
+        requestQueue.add(stringRequestOK)
     }
 }
