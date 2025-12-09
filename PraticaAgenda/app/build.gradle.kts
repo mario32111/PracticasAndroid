@@ -37,6 +37,8 @@ android {
 
 dependencies {
 
+    implementation(libs.volley)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -51,4 +53,7 @@ dependencies {
 // Para las imágenes circulares del contacto (opcional pero muy visual)
     implementation("de.hdodenhof:circleimageview:3.1.0")
 // Otros como Retrofit o Volley si usas API REST
+
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
 }
