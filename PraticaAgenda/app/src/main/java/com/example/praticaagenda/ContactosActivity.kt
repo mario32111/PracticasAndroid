@@ -111,12 +111,21 @@ class ContactosActivity : AppCompatActivity() {
         }
     }
     // ------------------------------------
-
+    private val detalleLauncher =
+        registerForActivityResult(StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                // Si regresa RESULT_OK (eliminación exitosa), recarga la lista
+                obtenerContactos(idUsuario)
+                Toast.makeText(this, "Lista de contactos recargada.", Toast.LENGTH_SHORT).show()
+            }
+        }
     private fun abrirDetalleContacto(idContacto: Int) {
-        val intent = Intent(this, DetalleContactoActivity::class.java) // Asumiendo DetalleActivity
+        val intent = Intent(this, DetalleContactoActivity::class.java)
         intent.putExtra("id_usuario", idUsuario)
         intent.putExtra("id_contacto", idContacto)
-        startActivity(intent)
+
+        // USAR EL LAUNCHER EN LUGAR DE startActivity(intent)
+        detalleLauncher.launch(intent)
     }
 
     private fun obtenerContactos(idUsuario: Int) {

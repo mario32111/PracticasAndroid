@@ -18,6 +18,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import de.hdodenhof.circleimageview.CircleImageView
 import org.json.JSONObject
 import androidx.core.view.WindowCompat // Necesitas esta importación
+import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 
 class DetalleContactoActivity : AppCompatActivity() {
 
@@ -107,14 +108,26 @@ class DetalleContactoActivity : AppCompatActivity() {
     }
 
     // --- Lógica del Botón EDITAR ---
+    private val editarContactoLauncher =
+        registerForActivityResult(StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                // 1. Recargar el detalle del contacto (OK)
+                obtenerDetalleContacto(idUsuario, idContacto)
+                Toast.makeText(this, "Detalles actualizados.", Toast.LENGTH_SHORT).show()
+
+                // 2. IMPORTANTE: Notificar a ContactosActivity que hubo un cambio
+                setResult(RESULT_OK)
+            }
+        }
+
+    // Reemplaza la función abrirActividadEdicion:
     private fun abrirActividadEdicion() {
-        // TODO: Enviar el ID del contacto y del usuario a la actividad de Edición
-        val intent =
-            Intent(this, activity_editar_contacto::class.java) // Asumiendo que tienes esta actividad
+        val intent = Intent(this, activity_editar_contacto::class.java)
         intent.putExtra("id_usuario", idUsuario)
         intent.putExtra("id_contacto", idContacto)
-        startActivity(intent)
-        // Opcional: usar registerForActivityResult para refrescar detalle si se edita
+
+        // USAR EL LAUNCHER para esperar el resultado
+        editarContactoLauncher.launch(intent)
     }
 
     // --- Lógica del Botón ELIMINAR ---
