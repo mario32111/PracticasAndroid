@@ -19,6 +19,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 import org.json.JSONObject
 import androidx.core.view.WindowCompat // Necesitas esta importación
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
+import com.squareup.picasso.Picasso
 
 class DetalleContactoActivity : AppCompatActivity() {
 
@@ -260,6 +261,8 @@ class DetalleContactoActivity : AppCompatActivity() {
 
         // Cargar imagen (REQUIERE LIBRERÍA DE IMAGEN como Glide)
         if (imagenUrl.isNotEmpty()) {
+            Picasso.get().load(imagenUrl).placeholder(R.drawable.ic_default_user).into(ivFotoDetalle)
+
             // Glide.with(this).load(imagenUrl).placeholder(R.drawable.ic_default_user).into(ivFotoDetalle)
         }
     }

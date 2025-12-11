@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 
 class ContactoAdapter(
@@ -29,10 +30,12 @@ class ContactoAdapter(
 
         holder.tvNombreContacto.text = contacto.nombre
         holder.tvTelefonoContacto.text = contacto.telefono
+        Picasso.get().load(contacto.imagen_url).placeholder(R.drawable.ic_default_user).into(holder.ivFotoContacto)
 
         // Carga de imagen (Necesitarías una librería como Glide o Picasso aquí)
         // Por ahora, solo usamos la imagen por defecto:
-        holder.ivFotoContacto.setImageResource(R.drawable.ic_default_user)
+        //holder.ivFotoContacto.setImageResource(R.drawable.ic_default_user)
+
 
         // Manejo de Clics
         holder.itemView.setOnClickListener {
